@@ -1,4 +1,4 @@
-exports.config = {
+module.exports = {
   apiKey: 'AIzaSyB2S1o2LHtoSXxdlS7gbA-x4eHR7KvOiUg',
   authDomain: 'hellohoneybunny-1fb9e.firebaseapp.com',
   databaseURL: 'https://hellohoneybunny-1fb9e.firebaseio.com',
