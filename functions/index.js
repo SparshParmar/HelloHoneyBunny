@@ -1,4 +1,9 @@
-const { getAllScreams, postOneScream } = require('./handlers/screams');
+const {
+  getAllScreams,
+  postOneScream,
+  getScream,
+  commentOnScream,
+} = require('./handlers/screams');
 const {
   signUp,
   Login,
@@ -13,6 +18,8 @@ const app = require('express')();
 //scream routes
 app.get('/screams', getAllScreams);
 app.post('/scream', FBauth, postOneScream);
+app.get('/scream/:screamId', getScream);
+app.post('/scream/:screamId/comment', FBauth, commentOnScream);
 //user route
 app.post('/signup', signUp);
 app.post('/login', Login);

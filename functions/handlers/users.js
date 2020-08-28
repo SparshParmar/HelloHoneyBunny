@@ -149,7 +149,6 @@ exports.getAuthenticatedUser = (req, res) => {
       return res.status(500).json({ error: err.code });
     });
 };
-
 exports.uploadImage = (req, res) => {
   const BusBoy = require('busboy');
   const path = require('path');
