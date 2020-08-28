@@ -2,10 +2,15 @@ const { db } = require('../utils/admin');
 const firebase = require('firebase');
 require('firebase/storage');
 const config = require('../utils/config');
-const { signUpValidators, loginValidators } = require('../utils/validators');
+const {
+  signUpValidators,
+  loginValidators,
+  reduceUserDetails,
+} = require('../utils/validators');
 firebase.initializeApp(config);
 
 const { admin } = require('../utils/admin');
+const { UserRecordMetadata } = require('firebase-functions/lib/providers/auth');
 
 exports.signUp = (req, res) => {
   const newUser = {
@@ -99,6 +104,49 @@ exports.Login = (req, res) => {
           .status(403)
           .json({ error: 'Wrong credentials, please try again' });
       } else return res.status(500).json({ error: err.code });
+    });
+};
+exports.addUserDetails = (req, res) => {
+  if (req.body === '') {
+    return res.status(500).json({
+      message: 'nothing to update',
+    });
+  }
+  let userDetails = reduceUserDetails(req.body);
+
+  db.doc(`/users/${req.user.handle}`)
+    .update(userDetails)
+    .then(() => {
+      return res.json({ message: 'User Profile Update Successfully' });
+    })
+    .catch((err) => {
+      cosole.error(err);
+      return json.status(500).json({ err0r: err.code });
+    });
+};
+exports.getAuthenticatedUser = (req, res) => {
+  let userData = {};
+  db.doc(`/users/${req.user.handle}`)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        userData.credentials = doc.data();
+        return db
+          .collection('likes')
+          .where('userHandle', '==', req.user.handle)
+          .get();
+      }
+    })
+    .then((data) => {
+      userData.likes = [];
+      data.forEach((doc) => {
+        userData.likes.push(doc.data());
+      });
+      return res.json(userData);
+    })
+    .catch((err) => {
+      console.error(err);
+      return res.status(500).json({ error: err.code });
     });
 };
 
