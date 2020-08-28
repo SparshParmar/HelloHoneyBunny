@@ -1,5 +1,11 @@
 const { getAllScreams, postOneScream } = require('./handlers/screams');
-const { signUp, Login, uploadImage } = require('./handlers/users');
+const {
+  signUp,
+  Login,
+  uploadImage,
+  addUserDetails,
+  getAuthenticatedUser,
+} = require('./handlers/users');
 const FBauth = require('./utils/FBauth');
 const functions = require('firebase-functions');
 const app = require('express')();
@@ -11,4 +17,6 @@ app.post('/scream', FBauth, postOneScream);
 app.post('/signup', signUp);
 app.post('/login', Login);
 app.post('/user/uploadImage', FBauth, uploadImage);
+app.post('/user', FBauth, addUserDetails);
+app.get('/user', FBauth, getAuthenticatedUser);
 exports.api = functions.https.onRequest(app);
