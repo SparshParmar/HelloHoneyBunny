@@ -12,6 +12,9 @@ exports.getAllScreams = (req, res) => {
           userHandle: doc.data().userHandle,
           body: doc.data().body,
           createdAt: doc.data().createdAt,
+          commentCount: doc.data().commentCount,
+          likeCount: doc.data().likeCount,
+          userImage: doc.data().userImage,
         });
       });
       return res.json(screams);
@@ -53,7 +56,7 @@ exports.commentOnScream = (req, res) => {
 
   if (req.body.body.trim() === '')
     return res.status(400).json({
-      error: 'comment must not be empty',
+      comment: 'comment must not be empty',
     });
 
   commentToBePosted.body = req.body.body;
@@ -74,11 +77,11 @@ exports.commentOnScream = (req, res) => {
       return db.collection('comments').add(commentToBePosted);
     })
     .then(() => {
-      res.json(commentToBePosted);
+      return res.json(commentToBePosted);
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).json({ error: err.code });
+      return res.status(500).json({ error: err.code });
     });
 };
 
@@ -111,7 +114,7 @@ exports.postOneScream = (req, res) => {
           err: err,
           scream: newScream,
         });
-        console.error(err);
+        // console.error(err);
       });
   }
 };

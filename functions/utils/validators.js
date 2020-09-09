@@ -4,7 +4,7 @@ const isEmpty = (string) => {
   return string.trim() === '';
 };
 const isEmailValid = (email) => {
-  const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const emailRegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (email.match(emailRegEx)) {
     return true;
   } else {
@@ -35,7 +35,7 @@ exports.signUpValidators = (data) => {
 
   return {
     errors,
-    valid: Object.keys(errors).length == 0 ? true : false,
+    valid: Object.keys(errors).length === 0 ? true : false,
   };
 };
 
@@ -50,7 +50,7 @@ exports.loginValidators = (data) => {
     errors.password = 'Empty password';
   }
 
-  return { errors, valid: Object.keys(errors).length == 0 ? true : false };
+  return { errors, valid: Object.keys(errors).length === 0 ? true : false };
 };
 
 exports.reduceUserDetails = (data) => {
