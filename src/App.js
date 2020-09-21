@@ -6,24 +6,27 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 
 import NavBar from './components/NavBar';
+import AuthRoute from './util/AuthRoute';
 import home from './pages/home';
 import login from './pages/login';
 import signUp from './pages/signUp';
+import themeFile from './util/theme.js';
+import jwtDecode from 'jwt-decode';
+const theme = createMuiTheme(themeFile);
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#009688',
-    },
-    secondary: {
-      main: '#c6ff00',
-    },
-  },
-  typography: {
-    useNextVariants: true,
-  },
-});
+let authenticated;
+const token = localStorage.FBIdToken;
 
+if (token) {
+  const decodedToken = jwtDecode(token);
+  console.log(decodedToken.exp * 1000);
+  if (decodedToken.exp * 1000 < Date.now()) {
+    window.location.href = '/login';
+    authenticated = false;
+  } else {
+    authenticated = true;
+  }
+}
 class App extends Component {
   render() {
     return (
@@ -31,12 +34,21 @@ class App extends Component {
         <div className="App">
           <Router>
             <NavBar />
-
             <div className="container">
               <Switch>
                 <Route exact path="/" component={home} />
-                <Route exact path="/login" component={login} />
-                <Route exact path="/signUp" component={signUp} />
+                <AuthRoute
+                  exact
+                  path="/login"
+                  component={login}
+                  authenticated={authenticated}
+                />
+                <AuthRoute
+                  exact
+                  path="/signUp"
+                  component={signUp}
+                  authenticated={authenticated}
+                />
               </Switch>
             </div>
           </Router>

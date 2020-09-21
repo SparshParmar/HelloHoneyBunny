@@ -10,41 +10,9 @@ import axios from 'axios';
 import Link from 'react-router-dom/Link';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-const style = {
-  form: {
-    textAlign: 'center',
-  },
-  image: {
-    maxHeight: 90,
-    padding: 20,
-    border: '2px solid black',
-    borderRadius: '20px',
-  },
-  pageTitle: {
-    margin: '10px auto 10px auto',
-  },
-  button: {
-    padding: 10,
-    margin: '10px auto 10px auto',
-  },
-  textField: {
-    margin: '10px auto 10px auto',
-  },
-  customError: {
-    color: 'red',
-    fontSize: '0.8rem',
-    marginTop: 10,
-  },
-  Loading: {
-    maxHeight: 60,
-  },
-  card: {
-    maxHeight: 600,
-    fontSize: 14,
-    'box-shadow': '0 4px 10px 0 rgba(0,0,0,0.2) ',
-    // transition: '0.3s',
-  },
-};
+import themeFile from '../util/theme';
+
+const style = themeFile;
 
 class login extends Component {
   constructor() {
@@ -69,7 +37,7 @@ class login extends Component {
     axios
       .post('/login', userData)
       .then((res) => {
-        console.log(res.data);
+        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
         this.setState({
           loading: false,
         });
