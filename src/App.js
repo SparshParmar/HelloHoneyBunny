@@ -12,6 +12,9 @@ import login from './pages/login';
 import signUp from './pages/signUp';
 import themeFile from './util/theme.js';
 import jwtDecode from 'jwt-decode';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
 const theme = createMuiTheme(themeFile);
 
 let authenticated;
@@ -31,7 +34,7 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <div className="App">
+        <Provider store={store}>
           <Router>
             <NavBar />
             <div className="container">
@@ -52,7 +55,7 @@ class App extends Component {
               </Switch>
             </div>
           </Router>
-        </div>
+        </Provider>
       </MuiThemeProvider>
     );
   }
