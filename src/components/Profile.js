@@ -19,7 +19,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 import dayjs from 'dayjs';
 import theme from '../util/theme';
-
+import MyButton from '../util/MyButton';
 import { logoutUser, uploadImage } from '../redux/actions/userActions';
 import EditDetails from '../components/EditDetails';
 
@@ -62,11 +62,14 @@ export class Profile extends Component {
                 onChange={this.handleImageChange}
                 hidden="hidden"
               />
-              <Tooltip title="Change profile picture" placement="top">
-                <IconButton onClick={this.handleEditPicture} className="button">
-                  <EditIcon color="primary" />
-                </IconButton>
-              </Tooltip>
+
+              <MyButton
+                tip="Change haha Profile Picture"
+                onClick={this.handleEditPicture}
+                btnClassName="button"
+              >
+                <EditIcon color="primary" />
+              </MyButton>
             </div>
 
             <hr />
@@ -101,11 +104,11 @@ export class Profile extends Component {
               <CalendarToday color="primary" />{' '}
               <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
             </div>
-            <Tooltip title="logout" placement="top">
-              <IconButton onClick={this.handleLogout}>
-                <KeyboardReturn color="primary"></KeyboardReturn>
-              </IconButton>
-            </Tooltip>
+
+            <MyButton tip="logout" onClick={this.handleLogout}>
+              <KeyboardReturn color="primary" />
+            </MyButton>
+
             <EditDetails />
           </div>
         </Paper>
