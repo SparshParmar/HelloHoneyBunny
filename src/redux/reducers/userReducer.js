@@ -4,9 +4,11 @@ import {
   SET_ERRORS,
   CLEAR_ERRORS,
   LOADING_UI,
+  UNLIKE_SCREAM,
   SET_AUTHENTICATED,
   SET_UNAUTHENTICATED,
   LOADING_USER,
+  LIKE_SCREAM,
 } from '../types';
 
 const initialState = {
@@ -36,6 +38,24 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: true,
+      };
+    case LIKE_SCREAM:
+      return {
+        ...state,
+        likes: [
+          ...state.likes,
+          {
+            userHandle: state.credentails.handle,
+            screamId: action.payload.screamId,
+          },
+        ],
+      };
+    case UNLIKE_SCREAM:
+      return {
+        ...state,
+        likes: state.like.filter(
+          (like) => like.screamId === action.payload.screamId
+        ),
       };
     default:
       return state;
