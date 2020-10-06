@@ -1,10 +1,10 @@
 import dataActions from '../actions/dataActions';
 import {
   SET_SCREAMS,
-  LIKE_SCREAMS,
   UNLIKE_SCREAM,
   LOADING_DATA,
   LIKE_SCREAM,
+  DELETE_SCREAM,
 } from '../types';
 
 const initialState = {
@@ -32,11 +32,21 @@ export default function (state = initialState, actions) {
       let index = state.screams.findIndex(
         (scream) => scream.screamId === actions.payload.screamId
       );
-      state.scream[index] = actions.payload;
+      state.screams[index] = actions.payload;
+      if (state.scream.screamId === actions.payload.screamId) {
+        state.scream = actions.payload;
+      }
       return {
         ...state,
       };
-
+    case DELETE_SCREAM:
+      let i_dex = state.screams.findIndex(
+        (scream) => scream.screamId === actions.payload
+      );
+      state.screams.splice(i_dex, 1);
+      return {
+        ...state,
+      };
     default:
       return state;
   }

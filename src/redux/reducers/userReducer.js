@@ -45,7 +45,7 @@ export default function (state = initialState, action) {
         likes: [
           ...state.likes,
           {
-            userHandle: state.credentails.handle,
+            userHandle: state.credentials.handle,
             screamId: action.payload.screamId,
           },
         ],
@@ -53,8 +53,8 @@ export default function (state = initialState, action) {
     case UNLIKE_SCREAM:
       return {
         ...state,
-        likes: state.like.filter(
-          (like) => like.screamId === action.payload.screamId
+        likes: state.likes.filter(
+          (like) => like.screamId !== action.payload.screamId
         ),
       };
     default:
