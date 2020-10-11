@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import MyButton from '../util/MyButton'
+import MyButton from '../../util/MyButton'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { likeScream, unlikeScream } from '../redux/actions/dataActions';
+import { likeScream, unlikeScream } from '../../redux/actions/dataActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
@@ -29,7 +29,6 @@ export class LikeButton extends Component {
   };
 
   render() {
-    const{classes} = this.props
 const{authenticated} = this.props.user;
     const likeButton = !authenticated ? (
       <Link to="/login">

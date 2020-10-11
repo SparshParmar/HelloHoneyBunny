@@ -71,7 +71,7 @@ export const deleteScream = (screamId) => (dispatch) => {
 
 export const postScream = (newScream) => (dispatch) => {
   dispatch({ type: LOADING_UI });
-  if (newScream.body.trim() == '' ) {
+  if (newScream.body.trim() === '' ) {
     dispatch({ type: SET_ERRORS, payload: 'Empty body' });
   } else {
     axios

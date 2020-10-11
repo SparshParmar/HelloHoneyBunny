@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { editUserDetails } from '../redux/actions/userActions';
+import { editUserDetails } from '../../redux/actions/userActions';
 import PropTypes from 'prop-types';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import Button from '@material-ui/core/Button';
@@ -14,10 +14,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import Tooltip from '@material-ui/core/Tooltip';
 
-import IconButton from '@material-ui/core/IconButton';
-import theme from '../util/theme';
+import theme from '../../util/theme';
 import Edit from '@material-ui/icons/Edit';
 
 const styles = {

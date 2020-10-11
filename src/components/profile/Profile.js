@@ -2,26 +2,22 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
-import Link from 'react-router-dom/Link';
+import {Link} from 'react-router-dom';
 
 import withStyles from '@material-ui/core/styles/withStyles';
-import { LOADING_USER } from '../redux/types';
 import MuiLink from '@material-ui/core/Link';
-import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
 import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
-import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
-// import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 import dayjs from 'dayjs';
-import theme from '../util/theme';
-import MyButton from '../util/MyButton';
-import { logoutUser, uploadImage } from '../redux/actions/userActions';
-import EditDetails from '../components/EditDetails';
+import theme from '../../util/theme';
+import MyButton from '../../util/MyButton';
+import { logoutUser, uploadImage } from '../../redux/actions/userActions';
+import EditDetails from '../profile/EditDetails'
 
 const styles = theme;
 
@@ -94,7 +90,7 @@ export class Profile extends Component {
               {website && (
                 <Fragment>
                   <LinkIcon color="primary" />
-                  <a href={website} target="_blank" rel="noopener noreferre">
+                  <a href={website}   rel="noopener noreferre">
                     {' '}
                     {website}
                   </a>

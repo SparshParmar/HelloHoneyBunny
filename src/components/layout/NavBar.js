@@ -4,14 +4,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 //Icons
 
-import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
 import Notifications from '@material-ui/icons/Notifications';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import MyButton from '../util/MyButton';
-import PostScream from './PostScream';
+import MyButton from '../../util/MyButton';
+import PostScream from '../scream/PostScream';
 const Link = require('react-router-dom').Link;
 
 class NavBar extends Component {

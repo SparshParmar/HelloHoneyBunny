@@ -14,9 +14,9 @@ import PropTypes from 'prop-types';
 
 import ChatIcon from '@material-ui/icons/Chat';
 
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
-import DeleteScream from '../components/DeleteScream';
+import DeleteScream from '../scream/DeleteScream'
 import LikeButton from './LikeButton'
 const styles = {
   card: {
@@ -59,7 +59,6 @@ class Scream extends Component {
         userImage,
         userHandle,
         screamId,
-        likeCount,
         commentCount,
       },
       user: {

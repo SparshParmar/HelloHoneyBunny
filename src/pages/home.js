@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import axios from 'axios';
-import Scream from '../components/Scream';
-import Profile from '../components/Profile';
+import { Grid } from '@material-ui/core';
+import Scream from '../components/scream/Scream';
+import Profile from '../components/profile/Profile';
 import { connect } from 'react-redux';
 import { getScreams } from '../redux/actions/dataActions';
 import PropTypes from 'prop-types';
@@ -11,7 +10,7 @@ class home extends Component {
     this.props.getScreams();
   }
   render() {
-    const { screams, loading } = this.props.data;
+    const {loading } = this.props.data;
     let recentScreamsMarkup = !loading ? (
       this.props.data.screams.map((scream) => (
         <Scream key={scream.screamId} scream={scream} />

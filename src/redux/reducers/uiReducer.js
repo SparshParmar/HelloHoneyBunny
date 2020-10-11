@@ -1,5 +1,4 @@
-import { FlareSharp } from '@material-ui/icons';
-import { getDefaultNormalizer } from '@testing-library/react';
+
 import { SET_ERRORS, LOADING_UI, CLEAR_ERRORS,STOP_LOADING_UI } from '../types';
 
 const initialState = {

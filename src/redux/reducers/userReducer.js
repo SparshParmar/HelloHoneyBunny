@@ -1,9 +1,6 @@
-import { findAllByDisplayValue } from '@testing-library/react';
 import {
   SET_USER,
-  SET_ERRORS,
-  CLEAR_ERRORS,
-  LOADING_UI,
+
   UNLIKE_SCREAM,
   SET_AUTHENTICATED,
   SET_UNAUTHENTICATED,

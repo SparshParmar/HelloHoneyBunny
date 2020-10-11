@@ -5,7 +5,7 @@ import './App.css';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 
-import NavBar from './components/NavBar';
+import NavBar from './components/layout/NavBar';
 import AuthRoute from './util/AuthRoute';
 import home from './pages/home';
 import login from './pages/login';
@@ -20,7 +20,6 @@ import { logoutUser, getUserData } from './redux/actions/userActions';
 import Axios from 'axios';
 const theme = createMuiTheme(themeFile);
 
-let authenticated;
 const token = localStorage.FBIdToken;
 
 if (token) {

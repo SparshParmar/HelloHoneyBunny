@@ -1,4 +1,3 @@
-import dataActions from '../actions/dataActions';
 import {
   SET_SCREAMS,
   SET_SCREAM,
@@ -8,7 +7,6 @@ import {
   LIKE_SCREAM,
   DELETE_SCREAM,
   POST_SCREAM,
-  STOP_LOADING_UI
 } from '../types';
 
 const initialState = {
