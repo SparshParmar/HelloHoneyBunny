@@ -41,6 +41,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://us-central1-hellohoneybunny-1fb9e.cloudfunctions.net/api",
-  "Access-Control-Allow-Origin": "*"
+  
+  "proxy": "https://us-central1-hellohoneybunny-1fb9e.cloudfunctions.net/api"
+  
 }

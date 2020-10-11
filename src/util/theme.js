@@ -100,4 +100,21 @@ export default {
       main: '#c6ff00',
     },
   },
+  submitButton: {
+    position: 'relative',
+  },
+  progressSpinner: {
+    position: 'absolute',
+  },
+  closeButton: {
+    position: 'absolute',
+    left: '90%',
+    top: '10%',
+  },
+
+  deleteButton: {
+    position: 'absoulte',
+    top: '4%',
+    left: '90%',
+  },
 };

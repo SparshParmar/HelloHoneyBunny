@@ -1,10 +1,14 @@
 import dataActions from '../actions/dataActions';
 import {
   SET_SCREAMS,
+  SET_SCREAM,
+
   UNLIKE_SCREAM,
   LOADING_DATA,
   LIKE_SCREAM,
   DELETE_SCREAM,
+  POST_SCREAM,
+  STOP_LOADING_UI
 } from '../types';
 
 const initialState = {
@@ -44,9 +48,22 @@ export default function (state = initialState, actions) {
         (scream) => scream.screamId === actions.payload
       );
       state.screams.splice(i_dex, 1);
+
       return {
         ...state,
       };
+
+    case POST_SCREAM:
+    return {
+        ...state,
+        screams: [actions.payload.resScream, ...state.screams],
+      };
+      case SET_SCREAM:
+        console.log(actions.payload)
+        return{
+          ...state,
+          scream:actions.payload
+        }
     default:
       return state;
   }

@@ -12,58 +12,82 @@ import DeleteOutline from '@material-ui/icons/DeleteOutline';
 
 import { connect } from 'react-redux';
 import { deleteScream } from '../redux/actions/dataActions';
+import theme from '../util/theme';
+import { IconButton, Tooltip } from '@material-ui/core';
+import Add  from '@material-ui/icons/Add';
 const styles = {
   deleteButton: {
-    position: 'absoulte',
-    top: '10%',
+    position: 'absolute',
     left: '90%',
+    top: '4%',
+    transition: 'transform .5s',
+      "&:hover": {
+        color: '#FF0000',
+        transform: 'scale(1.1)',
+        'box-shadow': '2px 2px 2px #999999'
+      }
+    
   },
+  
 };
+
 class DeleteScream extends Component {
   state = {
     open: false,
   };
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
-  handleClose = () => {
-    this.setState({ open: false });
-  };
 
-  deleteScream = () => {
+  handleOpen=(e)=> {
+    this.setState({open: true})
+    console.log(this.state);
+    e.preventDefault()
+
+  };
+  handleClose = (e) => {
+    this.setState({ open: false });
+    console.log(this.state);
+
+  e.preventDefault()
+
+  };
+  deleteScream = (e) => {
+    console.log(this.props.screamId)
     this.props.deleteScream(this.props.screamId);
     this.setState({ open: false });
+    e.preventDefault()
+
   };
   render() {
-    const { classes } = this.props;
-
+    const {classes} = this.props;
+    
     return (
       <Fragment>
-        <MyButton
-          tip="Delete Scream"
-          onClick={this.handleOpen}
-          btnClassName={classes.deleteButton}
-        >
-          <DeleteOutline color="primary" />
-        </MyButton>
+        <Tooltip title="Delete">
+          <IconButton onClick={this.handleOpen} className={classes.deleteButton}>
+          <DeleteOutline   color= '#FF0000'/>
+          </IconButton>
+        </Tooltip>
 
+       
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           fullWidth
           maxWidth="sm"
         >
-          <DialogTitle>Sacche ma delete Karu?</DialogTitle>
+        <DialogTitle>
+            Are you sure you want to delete this scream ?
+          </DialogTitle>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
-              Cancle
+              Cancel
             </Button>
             <Button onClick={this.deleteScream} color="secondary">
               Delete
             </Button>
           </DialogActions>
         </Dialog>
-      </Fragment>
+
+       </Fragment>
     );
   }
 }
@@ -73,6 +97,7 @@ DeleteScream.propTypes = {
   classes: PropTypes.object.isRequired,
   screamId: PropTypes.string.isRequired,
 };
+
 export default connect(null, { deleteScream })(
   withStyles(styles)(DeleteScream)
 );
